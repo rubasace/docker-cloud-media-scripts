@@ -3,7 +3,7 @@
 ####################
 FROM ubuntu:16.04
 
-MAINTAINER madslundt@live.dk <madslundt@live.dk>
+MAINTAINER rubasace <rubasodin18@gmail.com>
 
 
 ####################
@@ -18,17 +18,14 @@ RUN apt-get update && \
         bc \
         unzip \
         wget \
+        git \
+        golang-go  \
+        unionfs-fuse \
         ca-certificates && \
     update-ca-certificates && \
     apt-get install -y openssl && \
     sed -i 's/#user_allow_other/user_allow_other/' /etc/fuse.conf
 
-# MongoDB 3.4
-RUN \
-   apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6 && \
-   echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.4.list && \
-   apt-get update && \
-   apt-get install -y mongodb-org
 
 # S6 overlay
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
@@ -54,12 +51,6 @@ ENV CHECKERS "16"
 ENV RCLONE_CLOUD_ENDPOINT "gd-crypt:"
 ENV RCLONE_LOCAL_ENDPOINT "local-crypt:"
 
-# Plexdrive
-ENV CHUNK_SIZE "10M"
-ENV CLEAR_CHUNK_MAX_SIZE ""
-ENV CLEAR_CHUNK_AGE "24h"
-ENV MONGO_DATABASE "plexdrive"
-
 # Time format
 ENV DATE_FORMAT "+%F@%T"
 
@@ -78,12 +69,15 @@ ENV PLEX_TOKEN ""
 # SCRIPTS
 ####################
 COPY setup/* /usr/bin/
-COPY install.sh /
+COPY setup-rclone.sh /
+COPY build_rclone.sh /
 COPY scripts/* /usr/bin/
 COPY root /
 
-RUN chmod a+x /install.sh && \
-    sh /install.sh && \
+RUN chmod a+x /setup-rclone.sh && \
+    sh /setup-rclone.sh && \
+    chmod a+x /build_rclone.sh && \
+    sh /build_rclone.sh && \
     chmod a+x /usr/bin/* && \
     groupmod -g 1000 users && \
 	useradd -u 911 -U -d / -s /bin/false abc && \
