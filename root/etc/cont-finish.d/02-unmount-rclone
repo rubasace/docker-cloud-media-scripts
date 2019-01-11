@@ -1,0 +1,8 @@
+#!/usr/bin/with-contenv sh
+
+# unmount fuse
+
+umount_command="fusermount -uz /merged"
+
+echo "Executing $umount_command"
+exec $umount_command

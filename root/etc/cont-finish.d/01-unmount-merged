@@ -1,0 +1,8 @@
+#!/usr/bin/with-contenv sh
+
+# unmount fuse
+
+umount_command="fusermount $UnmountCommands /mnt/$MountPoint"
+
+echo "Executing $umount_command"
+exec $umount_command

@@ -1,0 +1,9 @@
+#!/usr/bin/with-contenv sh
+
+#merged_command="unionfs defaults,sync_read,allow_other,category.action=all,category.create=ff"
+#
+#echo "Mounting merged folder: $merged_command"
+#
+#exec $merged_command
+#
+#exit 0

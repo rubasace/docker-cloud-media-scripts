@@ -11,28 +11,12 @@
 # FUNCTIONS
 ###############################################################################
 mount_gdrive () {
-	cloud_dir="${cloud_encrypt_dir}"
-	if [ "$(printenv ENCRYPT_MEDIA)" -eq "0" ]; then
-		cloud_dir="${cloud_decrypt_dir}"
-	fi
+	rclone_command="/usr/sbin/rclone --config $ConfigPath mount $RemotePath $MountPoint $MountCommands"
 
-	# Make sure GD mountpoint exists.
-	if [ ! -d "${cloud_dir}" ]; then
-		mkdir -p "${cloud_dir}"
-	fi
+    echo "Mounting rclone folder: $rclone_command"
 
-	# Make sure Plexdrive temp folder exists.
-	if [ ! -d "${plexdrive_temp_dir}" ]; then
-		mkdir -p "${plexdrive_temp_dir}"
-	fi
+    #exec $rclone_command
 
-	# Mount GD if not already mounted.
-	if [ $(ps -ef | grep "plexdrive" | grep -v "grep" | wc -l) == "0" ]; then
-		echo "[ $(date $(printenv DATE_FORMAT)) ] Mounting Google Drive mountpoint: ${cloud_dir}"
-		plexdrive $mongo $plexdrive_options "${cloud_dir}" &
-	else
-		echo "[ $(date $(printenv DATE_FORMAT)) ] Google Drive mountpoint: ${cloud_dir} already mounted."
-	fi
 }
 
 mount_local_media () {
@@ -76,21 +60,19 @@ mount_union () {
 
 		echo "[ $(date $(printenv DATE_FORMAT)) ] Mounting union: ${local_media_dir}"
 		unionfs $ufs_options "${ufs_mounts}" "${local_media_dir}"
-	else
+	elsedocker
 		echo "[ $(date $(printenv DATE_FORMAT)) ] Union mountpoint: ${local_media_dir} already mounted."
 	fi
 }
 
 ###############################################################################
+echo basename = "$(basename "$0")"
 
 if pidof -o %PPID -x "$(basename "$0")"; then
 	echo "[ $(date $(printenv DATE_FORMAT)) ] Mount already in progress. Aborting."
 else
 	mount_gdrive
-	if [ "$(printenv ENCRYPT_MEDIA)" != "0" ]; then
-		mount_local_media
-	fi
-	mount_union
+	#mount_union
 fi
 
 exit 0

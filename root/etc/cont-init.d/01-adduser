@@ -1,0 +1,24 @@
+#!/usr/bin/with-contenv sh
+
+PUID=${PUID:-911}
+PGID=${PGID:-911}
+
+
+echo "
+GID/UID
+-------------------------------------
+User uid:    $(id -u abc)
+User gid:    $(id -g abc)
+-------------------------------------
+"
+chmod -R 777 \
+	/var/lock
+
+chmod a+r /etc/fuse.conf
+
+chown -R abc:abc \
+    /config \
+    /usr/bin/* \
+    /merged \
+    /local-media \
+    /mnt/$MountPoint
