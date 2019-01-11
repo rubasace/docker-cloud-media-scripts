@@ -5,9 +5,7 @@ MAINTAINER rubasace <rubasodin18@gmail.com>
 ENV GOPATH="/go" \
     AccessFolder="/mnt" \
     RemotePath="mediaefs:" \
-    MountPoint="mediaefs" \
-    ConfigDir="/config" \
-    ConfigName="rclone.conf" \
+    x="mediaefs" \
     MountCommands="--allow-other --allow-non-empty" \
     UnmountCommands="-uz"
 

@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv sh
 
-#rclone_command="/usr/sbin/rclone --config $ConfigPath mount $RemotePath $MountPoint $MountCommands"
+#rclone_command="/usr/sbin/rclone --config /config/rclone.config mount $RemotePath /mnt/drive $MountCommands"
 #
 #echo "Mounting rclone folder: $rclone_command"
 #

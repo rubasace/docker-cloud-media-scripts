@@ -11,6 +11,12 @@ User uid:    $(id -u abc)
 User gid:    $(id -g abc)
 -------------------------------------
 "
+
+drive_dir=/mnt/drive
+
+mkdir -p $drive_dir
+mkdir -p /config
+
 chmod -R 777 \
 	/var/lock
 
@@ -21,4 +27,4 @@ chown -R abc:abc \
     /usr/bin/* \
     /merged \
     /local-media \
-    /mnt/$MountPoint
+    $drive_dir

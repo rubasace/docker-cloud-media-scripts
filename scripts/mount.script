@@ -68,11 +68,11 @@ mount_union () {
 ###############################################################################
 echo basename = "$(basename "$0")"
 
-if pidof -o %PPID -x "$(basename "$0")"; then
+if pidof -o %PPID -s "$(basename "$0")"; then
 	echo "[ $(date $(printenv DATE_FORMAT)) ] Mount already in progress. Aborting."
 else
 	mount_gdrive
 	#mount_union
 fi
 
-exit 0
+#exit 0
