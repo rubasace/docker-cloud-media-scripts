@@ -1,0 +1,3 @@
+#!/bin/bash
+
+upload-local.script "$@" 2>&1 | tee "/logs/upload-local.log"

@@ -1,9 +1,9 @@
 #!/usr/bin/with-contenv sh
 
-#merged_command="unionfs defaults,sync_read,allow_other,category.action=all,category.create=ff"
-#
-#echo "Mounting merged folder: $merged_command"
-#
-#exec $merged_command
-#
-#exit 0
+merged_command="mergerfs -o defaults,sync_read,allow_other,category.action=all,category.create=ff /local-media:/drive-media /merged-media"
+
+echo "Mounting merged folder: $merged_command"
+
+exec $merged_command
+
+exit 0

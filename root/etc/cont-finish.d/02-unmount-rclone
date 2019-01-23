@@ -2,7 +2,7 @@
 
 # unmount fuse
 
-umount_command="fusermount -uz /merged"
+umount_command="fusermount -u /merged-media"
 
 echo "Executing $umount_command"
 exec $umount_command

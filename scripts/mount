@@ -1,4 +1,0 @@
-#!/bin/bash
-
-#sleep 5
-mount.script "$@" 2>&1 | tee "${log_dir}/mount.log"

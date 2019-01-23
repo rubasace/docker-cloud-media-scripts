@@ -1,0 +1,24 @@
+#!/usr/bin/with-contenv sh
+
+PUID=${PUID:-911}
+PGID=${PGID:-911}
+
+
+echo "
+GID/UID
+-------------------------------------
+User uid:    $PUID
+User gid:    $PGID
+-------------------------------------
+"
+#chmod -R 777 \
+#	/var/lock \
+#    $log_dir
+
+chmod a+r \
+    /etc/fuse.conf \
+
+chown -R $PUID:$PGID \
+    /config \
+    /logs \
+    /usr/bin/*

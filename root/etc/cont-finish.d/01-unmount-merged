@@ -2,7 +2,7 @@
 
 # unmount fuse
 
-umount_command="fusermount $UnmountCommands /mnt/$MountPoint"
+umount_command="fusermount $UnmountCommands /mnt/drive-media"
 
 echo "Executing $umount_command"
 exec $umount_command

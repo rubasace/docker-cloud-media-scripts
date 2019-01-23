@@ -1,0 +1,20 @@
+#!/usr/bin/with-contenv sh
+LOCKFILE="/var/lock/`basename $0`"
+
+(
+  # Wait for lock for 5 seconds
+  flock -x -n 200 || exit 1
+
+# Move older local files to the cloud
+#TODO move uploadCommand to envar
+
+command="/usr/sbin/rclone --config /config/rclone.conf move /local-media/ $RemotePath --checkers 3 --fast-list  -v --tpslimit 3 --transfers 3  --delete-empty-src-dirs --exclude-from /usr/bin/excludes
+--log-file /logs/upload.log"
+
+echo "Uploading local: $command"
+
+exec $command
+
+
+
+) 200> ${LOCKFILE}

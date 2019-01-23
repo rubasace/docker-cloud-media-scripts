@@ -1,0 +1,3 @@
+#!/bin/bash
+
+mount-rclone.script "$@" 2>&1 | tee "/logs/mount-rclone.log"

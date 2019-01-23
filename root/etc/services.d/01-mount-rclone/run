@@ -2,7 +2,7 @@
 
 umask 022
 
-mount_command="mount"
+mount_command="mount-rclone"
 
 echo "Started ${mount_command}"
 exec $mount_command
