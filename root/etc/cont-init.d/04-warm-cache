@@ -1,0 +1,9 @@
+#!/usr/bin/with-contenv sh
+
+umask 022
+
+command="warm-cache"
+
+echo "Started ${command}"
+
+exec $command

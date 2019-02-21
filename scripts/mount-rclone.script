@@ -3,7 +3,7 @@
 if pidof -o %PPID -s "$(basename "$0")"; then
 	echo "[ $(date $(printenv DATE_FORMAT)) ] Rclone folder already mounted. Ignoring..."
 else
-    rclone_command="/usr/sbin/rclone --config /config/rclone.conf --uid $PUID --gid $PGID mount $RemotePath /drive-media $MountCommands"
+    rclone_command="/usr/sbin/rclone --config /config/rclone.conf --uid $PUID --gid $PGID --umask 022 mount $RemotePath /drive-media $MountCommands"
 
     echo "Mounting rclone folder: $rclone_command"
 
