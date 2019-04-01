@@ -8,7 +8,7 @@ LOCKFILE="/var/lock/`basename $0`"
 # Move older local files to the cloud
 #TODO move uploadCommand to envar
 
-command="/usr/sbin/rclone --config /config/rclone.conf move /local-media/ $RemotePath \
+command="/usr/sbin/rclone --config /config/rclone.conf move /local-media/ /drive-media \
     --checkers 3 \
     --fast-list  \
     -v \
@@ -17,6 +17,7 @@ command="/usr/sbin/rclone --config /config/rclone.conf move /local-media/ $Remot
     --delete-empty-src-dirs \
     --exclude-from /usr/bin/excludes \
     --log-file /logs/upload.log"
+
 
 echo "Uploading local: $command"
 

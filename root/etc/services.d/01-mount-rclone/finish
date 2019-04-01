@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv sh
 
-umount_command="fusermount $UnmountCommands /mnt/$MountPoint"
+umount_command="fusermount $UnmountCommands /drive-media"
 
 echo "Executing $umount_command"
 exec $umount_command
