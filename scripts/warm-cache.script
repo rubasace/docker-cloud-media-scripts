@@ -7,8 +7,9 @@ START_TIME=$SECONDS
 
 echo "Warming up cache" | tee "/logs/warm-cache.log"
 
-find /merged-media | tee -a "/logs/warm-cache.log"
+#find /merged-media | tee -a "/logs/warm-cache.log"
 
+rclone rc vfs/refresh recursive=true
 
 echo "Cache warmed up | tee -a "/logs/warm-cache.log"
 ELAPSED_TIME=$(($SECONDS - $START_TIME))

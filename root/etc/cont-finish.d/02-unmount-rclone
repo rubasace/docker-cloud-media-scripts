@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv sh
 
-# unmount fuse
+# umount fuse
 
 umount_command="fusermount -u /merged-media"
 

@@ -3,10 +3,11 @@ FROM woahbase/alpine-s6
 MAINTAINER rubasace <rubasodin18@gmail.com>
 
 ENV GOPATH="/go" \
-    AccessFolder="/mnt" \
-    RemotePath="mediaefs:" \
-    MountCommands="--allow-other --allow-non-empty" \
-    UnmountCommands="-u"
+    REMOTE_PATH="mediaefs:" \
+    MOUNT_ARGS="--allow-other --allow-non-empty" \
+    UPLOAD_ARGS="--checkers 3 --fast-list -v --tpslimit 3 --transfers 3 --delete-empty-src-dirs --log-file /logs/upload.log" \
+    UMMOUNT_ARGS="-u" \
+    INITIAL_WARMUP="true"
 
 RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing  --update mergerfs
 ## Alpine with Go Git
@@ -37,7 +38,7 @@ RUN chmod a+x /usr/bin/*
 #    rm -rf /tmp/* /var/lib/{apt,dpkg,cache,log}/
 
 
-VOLUME ["/local-media","/merged-media", "/drive-media", "/config", "/logs"]
+VOLUME ["/local-media","/merged-media", "/drive-media", "/config", "/logs", "/dir_cache"]
 
 ####################
 # ENTRYPOINT

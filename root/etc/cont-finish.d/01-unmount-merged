@@ -1,8 +1,8 @@
 #!/usr/bin/with-contenv sh
 
-# unmount fuse
+# umount fuse
 
-umount_command="fusermount $UnmountCommands /mnt/drive-media"
+umount_command="fusermount $UMOUNT_ARGS /mnt/drive-media"
 
 echo "Executing $umount_command"
 exec $umount_command

@@ -1,9 +1,14 @@
 #!/usr/bin/with-contenv sh
 
-#umask 022
-#
-#command="warm-cache"
-#
-#echo "Started ${command}"
-#
-#exec $command
+if [ $SKIP_WARMUP = "true" ]; then
+ echo "Skipping initial cache warmup"
+ exit 0
+fi
+
+umask 022
+
+command="warm-cache"
+
+echo "Started ${command}"
+
+exec $command
