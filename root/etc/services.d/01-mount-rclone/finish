@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv sh
 
-umount_command="fusermount -uz /drive-media"
+umount_command="fusermount -u /drive-media"
 
 echo "Executing $umount_command"
 exec $umount_command
