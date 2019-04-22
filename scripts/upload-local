@@ -1,3 +1,20 @@
-#!/bin/bash
+#!/usr/bin/with-contenv sh
+LOCKFILE="/var/lock/`basename $0`"
 
-upload-local.script "$@" 2>&1 | tee "/logs/upload-local.log"
+if [ "$SKIP_UPLOAD" = "true" ]; then
+ echo "Skipping upload"
+ exit 0
+fi
+
+(
+  # Wait for lock for 5 seconds
+  flock -x -n 200 || exit 1
+
+# Move older local files to the cloud
+
+
+/scripts/upload-local.sh
+
+
+
+) 200> ${LOCKFILE}

@@ -3,11 +3,9 @@ FROM woahbase/alpine-s6
 MAINTAINER rubasace <rubasodin18@gmail.com>
 
 ENV GOPATH="/go" \
-    REMOTE_PATH="mediaefs:" \
-    MOUNT_ARGS="--allow-other --allow-non-empty" \
-    UPLOAD_ARGS="--checkers 3 --fast-list -v --tpslimit 3 --transfers 3 --delete-empty-src-dirs --log-file /logs/upload.log" \
-    UMMOUNT_ARGS="-u" \
-    INITIAL_WARMUP="true"
+    SKIP_WARMUP="false" \
+    SKIP_UPLOAD="false" \
+    SKIP_BACKUP="false"
 
 RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing  --update mergerfs
 ## Alpine with Go Git

@@ -1,3 +1,14 @@
-#!/bin/bash
+#!/usr/bin/with-contenv sh
+LOCKFILE="/var/lock/`basename $0`"
 
-warm-cache.script &
+START_TIME=$SECONDS
+
+echo "Warming up cache" | tee "/logs/warm-cache.log"
+
+#find /merged-media | tee -a "/logs/warm-cache.log"
+
+/scripts/warm-mount-cache.sh
+
+echo "Cache warmed up | tee -a "/logs/warm-cache.log"
+ELAPSED_TIME=$((${SECONDS} - ${START_TIME}))
+echo "Cache warmed up in ${ELAPSED_TIME}s" | tee -a "/logs/warm-cache.log"
