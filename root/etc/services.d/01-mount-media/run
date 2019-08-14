@@ -1,0 +1,6 @@
+#!/usr/bin/with-contenv sh
+
+mount_command="${MOUNT_MEDIA}"
+
+echo "Started ${mount_command}"
+exec $mount_command

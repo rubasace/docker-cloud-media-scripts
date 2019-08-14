@@ -1,8 +1,6 @@
 #!/usr/bin/with-contenv sh
 
-umask 022
-
-mount_command="mount-rclone"
+mount_command="${MOUNT_DOWNLOADS}"
 
 echo "Started ${mount_command}"
 exec $mount_command

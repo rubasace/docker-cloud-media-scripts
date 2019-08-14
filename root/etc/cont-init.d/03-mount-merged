@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv sh
 
-merged_command="mergerfs -o defaults,sync_read,allow_other,category.action=all,category.create=ff /local-media:/drive-media /merged-media"
+merged_command="mergerfs -o defaults,sync_read,allow_other,category.action=all,category.create=ff /local-media:/drive-media:/drive-downloads /merged-media"
 
 echo "Mounting merged folder: $merged_command"
 

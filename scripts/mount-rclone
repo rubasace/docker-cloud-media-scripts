@@ -1,9 +1,0 @@
-#!/bin/bash
-
-if pidof -o %PPID -s "$(basename "$0")"; then
-	echo "[ $(date $(printenv DATE_FORMAT)) ] Rclone folder already mounted. Ignoring..."
-else
-    /scripts/mount-drive.sh
-fi
-
-exit 0

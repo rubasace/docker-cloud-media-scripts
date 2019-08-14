@@ -3,9 +3,9 @@ LOCKFILE="/var/lock/`basename $0`"
 
 START_TIME=$SECONDS
 
-echo "Warming up cache" | tee "/logs/warm-cache.log"
+echo "Waiting for warming up cache" | tee "/logs/warm-cache.log"
 
-#find /merged-media | tee -a "/logs/warm-cache.log"
+sleep 60
 
 /scripts/warm-mount-cache.sh
 

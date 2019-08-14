@@ -36,7 +36,7 @@ RUN chmod a+x /usr/bin/*
 #    rm -rf /tmp/* /var/lib/{apt,dpkg,cache,log}/
 
 
-VOLUME ["/local-media","/merged-media", "/drive-media", "/config", "/logs", "/dir_cache"]
+VOLUME ["/local-media","/merged-media", "/drive-media", "/drive-downloads", "/config", "/logs", "/dir_cache"]
 
 ####################
 # ENTRYPOINT

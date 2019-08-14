@@ -5,10 +5,4 @@ if [ "$SKIP_WARMUP" = "true" ]; then
  exit 0
 fi
 
-umask 022
-
-command="warm-cache"
-
-echo "Started ${command}"
-
-exec $command
+warm-cache&

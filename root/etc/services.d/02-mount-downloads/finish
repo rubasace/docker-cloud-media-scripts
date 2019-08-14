@@ -1,0 +1,8 @@
+#!/usr/bin/with-contenv sh
+
+umount_command="${UMOUNT_DOWNLOADS}"
+
+echo "Executing $umount_command"
+exec $umount_command
+
+echo "unmounted downloads"
